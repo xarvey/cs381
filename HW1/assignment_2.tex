@@ -146,7 +146,7 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{Assignment\ \#1} % Assignment title
-\newcommand{\hmwkDueDate}{Monday,\ September 12th,\ 2012} % Due date
+\newcommand{\hmwkDueDate}{Thursday,\ September 11th,\ 2014} % Due date
 \newcommand{\hmwkClass}{CS 381} % Course/class
 \newcommand{\hmwkClassTime}{12:00pm} % Class/lecture time
 \newcommand{\hmwkClassInstructor}{Prof. Grigorescu} % Teacher/lecturer
@@ -168,7 +168,7 @@
 \date{} % Insert date here if you want it to appear below your name
 
 %----------------------------------------------------------------------------------------
-
+ \everymath{\displaystyle} 
 \begin{document}
 
 \maketitle
@@ -228,8 +228,6 @@ $a=8$ $b=2$ $f(n)=n^2$ $where \ c=2 \ c<log_{b}a $
 \textit{Proof}:
 
 Basis: $T(1)=1; T(1)=1^3+log_{2}1*1=1+0=1 $ \\
-
-
 Induction: $Assume\ T(n)=n^3+log_{2}n*n^2\ is\ true$ \\
 From the original definition:\\
 $T(n+1)=8(T(\frac{n+1}{2}))+(n+1)^2$ \\
@@ -273,12 +271,13 @@ We keep going on(I wrote a small program) And get the result F(12)=233
 
 \begin{homeworkProblem}
 
-Create a boolean array from [0,1000000], and a hash function.
+
+1. If I can create a boolean array from [minnum,maxnum]
 
 \problemAnswer
 {
 For i from first number to last number \\
- if arr[hash(i+k)]=true or arr[hash(i-k)]=true \\
+ if arr[i+k]=true or arr[i-k]=true \\
     the element exists. \\
     print it out \&\& break  \\
     
@@ -286,6 +285,22 @@ If not exists, print out not exists
 }   
 
 The complexity is $O(n)$
+
+
+2. If I can not create an array.
+
+\problemAnswer
+{
+MergeSort the array \\
+For i from first number to last number \\
+ Do binary search for i+d and i-d
+    
+If not exists, print out not exists
+}   
+
+The complexity is $O(nlogn)$
+
+
 
 \end{homeworkProblem}
 
