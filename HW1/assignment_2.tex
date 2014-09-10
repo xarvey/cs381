@@ -177,10 +177,10 @@
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
-%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
 
 \newpage
-\tableofcontents
+%\tableofcontents
 \newpage
 
 %----------------------------------------------------------------------------------------
@@ -190,6 +190,8 @@
 % To have just one problem per page, simply put a \clearpage after each problem
 
 \begin{homeworkProblem}
+ $( \log n )^{0.3}$, $(\log n )^{6}$, $\sqrt{n}$, \{$n\log n$,$\log n^n$ \} , $n (\log n)^4 $,
+  $n^2$,  $n^{21}$, $2^n$, $n! $
 
 \end{homeworkProblem}
 
@@ -198,17 +200,104 @@
 %----------------------------------------------------------------------------------------
 
 \begin{homeworkProblem}
-\lipsum[2]
 
-\problemAnswer{
 \begin{center}
-\includegraphics[width=0.75\columnwidth]{example_figure} % Example image
+\includegraphics[width=0.50\columnwidth]{photo.JPG} \\
+Figure 1. Recursion Tree
 \end{center}
 
-\lipsum[3-5]
-}
+
+
+What we can get from Figure 1 is : \\
+
+$T(n)=8T(\frac{n}{2})+n^2$   \hspace{30mm}         Level 0\\
+$8T(\frac{n}{2})=64T(\frac{n}{4})+n^2$  \hspace{30mm}  Level 1\\
+$64T(\frac{n}{4})=512T(\frac{n}{8})+n^2$ \hspace{30mm} Level 2\\
+$...$ \\
+$T(n) = 8^{log_{2}n}T(1)+{log_{2}n}n^2 $  \hspace{30mm}   \\
+
+So we can conclude that $T(n)=\Theta(n^3)$
+
+From Master theorem: $T(n)=\Theta(n^{log_{2}8})=\Theta(n^3)$ since 
+$a=8$ $b=2$ $f(n)=n^2$ $where \ c=2 \ c<log_{b}a $
+
+\medskip
+\medskip
+
+
+\textit{Proof}:
+
+Basis: $T(1)=1; T(1)=1^3+log_{2}1*1=1+0=1 $ \\
+
+
+Induction: $Assume\ T(n)=n^3+log_{2}n*n^2\ is\ true$ \\
+From the original definition:\\
+$T(n+1)=8(T(\frac{n+1}{2}))+(n+1)^2$ \\
+$=8[(\frac{n+1}{2})^3+log_{2}\frac{n+1}{2}*(\frac{n+1}{2})^2]+(n+1)^2$ \\
+$=8(n+1)^3+2log_{2}\frac{n+1}{2}*(n+1)^2+(n+1)^2 $ \\
+$....Some\ Magic ... $ \\
+$=(n+1)^3+log_{2}(n+1)*(n+1)^2 $ \\
+
+\medskip
+
+So by the basis and induction. We conclude that $T(n) =n^3+{log_{2}n}*n^2 $
+
+
+ 
+
+
 \end{homeworkProblem}
 
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+
+Apparently  $ F(n)=F(n-1)+F(n-2); F(0)=1; F(1)=1; F(2)=2$
+
+So We can get
+
+F(0)=1 \\
+F(1)=1 \\
+F(2)=2\\
+F(3)=3\\
+F(4)=5\\
+F(5)=8\\
+
+It Fibonacci sequence.
+
+We keep going on(I wrote a small program) And get the result F(12)=233
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+Create a boolean array from [0,1000000], and a hash function.
+
+\problemAnswer
+{
+For i from first number to last number \\
+ if arr[hash(i+k)]=true or arr[hash(i-k)]=true \\
+    the element exists. \\
+    print it out \&\& break  \\
+    
+If not exists, print out not exists
+}   
+
+The complexity is $O(n)$
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+1. Scan the array, find the minimum one, set the element as $\infty $. Repeat it 3 times. \\
+
+2. Use $O(nlogn)$ sorting method. return the $\sqrt{n}$ element. \\
+
+3. Create a Min-Heap ,$O(n)$, Delete a node every time, $O(\sqrt{n})$. So the total complexity is $O(N)$
+
+\end{homeworkProblem}
 %----------------------------------------------------------------------------------------
 
 \end{document}
