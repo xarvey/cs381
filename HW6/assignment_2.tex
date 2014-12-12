@@ -150,7 +150,7 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{Assignment\ \#6} % Assignment title
-\newcommand{\hmwkDueDate}{Tuesday,\ Dec 2nd,\ 2014} % Due date
+\newcommand{\hmwkDueDate}{Tuesday,\ Dec 11th,\ 2014} % Due date
 \newcommand{\hmwkClass}{CS 381} % Course/class
 \newcommand{\hmwkClassTime}{12:00pm} % Class/lecture time
 \newcommand{\hmwkClassInstructor}{Prof. Grigorescu} % Teacher/lecturer
@@ -195,40 +195,50 @@
 
 \begin{homeworkProblem}
 
-1.First, I will check if the flow given is valid, by which it means that check if the flow is conservative and each flow doesn't exceed the capacity, which cost $O(E)$ where E is the num of edges. Afterwards, I will check if there is any more augment path exists which can be done by a single BFS, takes $O(V+E)$ time. So the total complexity is $O(n^{3/2})$. \\
+1.As shown in the textbook and the slides. In order to prove Longest path is NP. We need to show that
+\begin{itemize}
+
+\item it apparently easy to verify if the length is greater t
+\item the edge should be simple-path
+\item the edge should be on the graph
+
+\end{itemize}
+
+All of them can be verified in polynomial time.\\
+ 2. We need to prove that
+$$3-SAT\le_pLongest-Path$$
+
+Since 3-SAT is Np-complete, so I have to reduce the longest-path from 3-sat
+
+As we see in the slides
+$$3-SAT\le_pHamilton-path$$
+
+So we construct a Hamilton path with all the edges with weight=1. The problem becomes can I find a hamilton path with the length k-1.
+
+So 
+
+$$3-SAT\le_pHamilton-path\le_pLongest-Path$$\\
 
 
-2.We can check the residual graph, if the edge which decreases by 1 has no reverse edge,(or reverse edge is 0), that means the result will be modified. So set the reverse edge to -1 and find an augment path from t to s which can eliminate this negative weight edge. IF the edge has reverse edge, then it has no effects on the graph, so the total complexity is one-time BFS which is $O(n+n^{3/2})$
+3. Use binary search(0,$\sum\limits^elength$), for each result, verify if that longest path exists. If so, binary search(upperhalf), else binary search(lowerhalf), the complexity becomes $O(log(\sum\limits^elength))$
+ 
 
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
 
-Create the network like the following.
+1. To show it if it is NP just need to verify if all the sports is covered and the number of teacher is less than k.\\
 
-\begin{verbatim}
+2. Construct a graph with
 
-S=source
-C=client1..clentn
-B=base1...basen
-T=sink
+$$G(V,E), where E = sports, V = instructor$$
 
-\end{verbatim}
-The edge is
-\begin{verbatim}
+if an instructor can teach a sport set that instructor on the vertex of the edge. So this problem becomes vertex cover question. 
 
-W(S,client1...n)=1
-W(Base1...basen,t)=L_a
-W(Client1..n,Base1...n)= if Ci,Bj can be connected within R, 1, else ,0
+So
 
-\end{verbatim}
-Where W(a,b) represents the max capacity from a to b.
+$$Vertex-cover\le_pInstructor$$
 
-Find the max flow of the network(Ford-Fulkenson), see if the result equals to the number of client.
-
-Since the input flow is limited to 1, which restrict for each client can only connect to 1 server, and the load flow is L, which restrict only L client can be connected to 1 server.
-
-The complexity is $O(VE^2)$
 
 \end{homeworkProblem}
 
